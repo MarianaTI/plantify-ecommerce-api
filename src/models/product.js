@@ -14,11 +14,11 @@ const productSchema = new Schema(
       type: Number,
       require: true,
     },
-    starts: {
+    stars: {
       type: Number,
       require: true,
     },
-    id_categorie: {
+    id_category: {
       ref: "Categories",
       type: Schema.Types.ObjectId,
       require: true,
