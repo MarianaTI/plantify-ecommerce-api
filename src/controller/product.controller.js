@@ -1,7 +1,4 @@
-import Product from "../models/product.js";
-import Categories from "../models/categories.js";
-import { uploadImage, deleteImage } from "../utils/cloudinary.js";
-import fs from "fs-extra";
+import Product from "../models/product.js"
 
 export const create = async (req, res) => {
   try {
@@ -15,30 +12,7 @@ export const create = async (req, res) => {
       description,
       price,
       stars,
-      // id_category,
     });
-
-    // if (req.files?.image) {
-    //   const result = await uploadImage(req.files.image.tempFilePath);
-    //   newProduct.image = {
-    //     publicId: result.public_id,
-    //     secureUrl: result.secure_url,
-    //   };
-
-    //   fs.unlink(req.files.image.tempFilePath);
-    // }
-
-    // if (req.files?.imageBackground) {
-    //   const resultBackground = await uploadImage(
-    //     req.files.imageBackground.tempFilePath
-    //   );
-    //   newProduct.imageBackground = {
-    //     publicId: resultBackground.public_id,
-    //     secureUrl: resultBackground.secure_url,
-    //   };
-
-    //   fs.unlink(req.files.imageBackground.tempFilePath);
-    // }
 
     const productSave = await newProduct.save();
     return res.status(201).json({ message: "Product created: ", productSave });
@@ -46,6 +20,7 @@ export const create = async (req, res) => {
     return res.status(500).json({ message: "Error al crear el producto" });
   }
 };
+
 
 export const getAll = async (req, res) => {
   try {
@@ -57,10 +32,6 @@ export const getAll = async (req, res) => {
       description: prod.description,
       price: prod.price,
       stars: prod.stars,
-      // category: prod.id_category ? prod.id_category.name : "Unknown",
-      // categoryId: prod.id_category._id,
-      // image: prod.image,
-      // imageBackground: prod.imageBackground,
     }));
 
     const response = {
@@ -73,6 +44,7 @@ export const getAll = async (req, res) => {
     return res.status(500).json({ message: "Error al obtener los productos" });
   }
 };
+
 
 export const getById = async (req, res) => {
   try {
@@ -91,12 +63,6 @@ export const getById = async (req, res) => {
       description: product.description,
       price: product.price,
       stars: product.stars,
-      // category: {
-      //   _id: product.id_category._id,
-      //   name: product.id_category.name,
-      // },
-      // image: product.image,
-      // imageBackground: product.imageBackground,
     };
 
     return res.status(200).json(productFilter);
@@ -104,6 +70,7 @@ export const getById = async (req, res) => {
     return res.status(500).json({ message: "Error al obtener el producto" });
   }
 };
+
 
 export const deleteOne = async (req, res) => {
   try {
@@ -135,41 +102,12 @@ export const update = async (req, res) => {
     if (description) updateData.description = description;
     if (price) updateData.price = price;
     if (stars) updateData.stars = stars;
-    // if (id_category) updateData.id_category = id_category;
 
     const existingProduct = await Product.findById(id);
 
     if (!existingProduct) {
       return res.status(404).json({ message: "Producto no encontrado" });
     }
-
-    // if (req.files?.image) {
-    //   if (existingProduct.image?.publicId) {
-    //     await deleteImage(existingProduct.image.publicId);  
-    //   }
-      
-    //   const result = await uploadImage(req.files.image.tempFilePath);
-    //   updateData.image = {
-    //     publicId: result.public_id,
-    //     secureUrl: result.secure_url,
-    //   };
-
-    //   await fs.unlink(req.files.image.tempFilePath);  
-    // }
-
-    // if (req.files?.imageBackground) {
-    //   if (existingProduct.imageBackground?.publicId) {
-    //     await deleteImage(existingProduct.imageBackground.publicId);  
-    //   }
-
-    //   const resultBackground = await uploadImage(req.files.imageBackground.tempFilePath);
-    //   updateData.imageBackground = {
-    //     publicId: resultBackground.public_id,
-    //     secureUrl: resultBackground.secure_url,
-    //   };
-
-    //   await fs.unlink(req.files.imageBackground.tempFilePath);  
-    // }
 
     Object.assign(existingProduct, updateData);
 
