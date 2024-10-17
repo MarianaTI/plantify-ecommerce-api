@@ -9,7 +9,7 @@ router.post(
   fileUpload({ useTempFiles: true, tempFileDir: "/uploads" }),
   productController.create
 );
-router.get("/products", productController.getAll);
+router.get("/product", productController.getAll);
 router.get("/product/:id", productController.getById);
 router.put(
   "/product/update/:id",

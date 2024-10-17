@@ -18,27 +18,27 @@ const productSchema = new Schema(
       type: Number,
       require: true,
     },
-    id_category: {
-      ref: "Categories",
-      type: Schema.Types.ObjectId,
-      require: true,
-    },
-    image: {
-      publicId: {
-        type: String,
-      },
-      secureUrl: {
-        type: String,
-      },
-    },
-    imageBackground: {
-      publicId: {
-        type: String,
-      },
-      secureUrl: {
-        type: String,
-      },
-    },
+    // id_category: {
+    //   ref: "Categories",
+    //   type: Schema.Types.ObjectId,
+    //   require: true,
+    // },
+    // image: {
+    //   publicId: {
+    //     type: String,
+    //   },
+    //   secureUrl: {
+    //     type: String,
+    //   },
+    // },
+    // imageBackground: {
+    //   publicId: {
+    //     type: String,
+    //   },
+    //   secureUrl: {
+    //     type: String,
+    //   },
+    // },
   },
   {
     versionKey: false,
