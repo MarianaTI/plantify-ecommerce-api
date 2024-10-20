@@ -5,8 +5,8 @@ import { connectToDb } from "./db.js";
 async function main() {
   await connectToDb();
 
-  app.listen(port);
-  console.log('server on port: ', port);
+  app.listen(8080);
+  console.log('server on port: ', 8080);
   console.log('http://localhost:3000/');
 }
 
