@@ -32,6 +32,7 @@ export const getAll = async (req, res) => {
       description: prod.description,
       price: prod.price,
       stars: prod.stars,
+      createdAt: prod.createdAt,
     }));
 
     const response = {
@@ -117,6 +118,16 @@ export const update = async (req, res) => {
   } catch (error) {
     console.error("Error al actualizar el producto:", error);
     return res.status(500).json({ message: "Error al actualizar el producto", error: error.message });
+  }
+};
+
+export const getTotal = async (req, res) => {
+  try {
+    const total = await Product.countDocuments();
+
+    return res.status(200).json({ total });
+  } catch (error) {
+    return res.status(500).json({ message: "Error al obtener el total de productos", error: error.message });
   }
 };
 

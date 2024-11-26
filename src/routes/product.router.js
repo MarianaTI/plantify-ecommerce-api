@@ -10,6 +10,7 @@ router.post(
   productController.create
 );
 router.get("/product", productController.getAll);
+router.get("/products/total", productController.getTotal);
 router.get("/product/:id", productController.getById);
 router.put(
   "/product/update/:id",
